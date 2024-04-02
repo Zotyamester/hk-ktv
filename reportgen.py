@@ -5,27 +5,17 @@ import PyPDF2
 
 # Source of input files: https://vik.bme.hu/page/62/
 
-paths = ['https://vik.bme.hu/document/5733/original/5N-A7_1.pdf',
-         'https://vik.bme.hu/document/5732/original/5N-A7_3.pdf',
-         'https://vik.bme.hu/document/5736/original/5N-A7_5.pdf',
-         'https://vik.bme.hu/document/5734/original/5N-A8_1.pdf',
-         'https://vik.bme.hu/document/5735/original/5N-A8_3.pdf',
-         'https://vik.bme.hu/document/5737/original/5N-A8_5.pdf',
-         'https://vik.bme.hu/document/5738/original/5N-A8_7.pdf',
-         'https://vik.bme.hu/document/5739/original/5N-A9_1.pdf',
-         'https://vik.bme.hu/document/5739/original/5N-A9_1.pdf',
-         'https://vik.bme.hu/document/5741/original/5N-A9_3.pdf',
-         'https://vik.bme.hu/document/5740/original/5N-A9_5.pdf',
-         'https://vik.bme.hu/document/5757/original/5N-SZVTX.pdf',
-         'https://vik.bme.hu/document/5743/original/5N-AXXX.pdf',
-         'https://vik.bme.hu/document/5366/original/5N-A7_2.pdf',
-         'https://vik.bme.hu/document/5367/original/5N-A7_4.pdf',
-         'https://vik.bme.hu/document/5372/original/5N-A7_6.pdf',
-         'https://vik.bme.hu/document/5368/original/5N-A8_2.pdf',
-         'https://vik.bme.hu/document/5369/original/5N-A8_4.pdf',
-         'https://vik.bme.hu/document/5370/original/5N-A8_6.pdf',
-         'https://vik.bme.hu/document/5371/original/5N-A9_2.pdf',
-         'https://vik.bme.hu/document/5373/original/5N-A9_4.pdf']
+paths = [
+        'https://vik.bme.hu/document/6098/original/5n_a7_2.pdf',
+        'https://vik.bme.hu/document/6100/original/5n_a7_4.pdf',
+        'https://vik.bme.hu/document/6099/original/5n_a7_6.pdf',
+        'https://vik.bme.hu/document/6101/original/5n_a8_2.pdf',
+        'https://vik.bme.hu/document/6102/original/5n_a8_4.pdf',
+        'https://vik.bme.hu/document/6108/original/5n_a8_6.pdf',
+        'https://vik.bme.hu/document/6103/original/5n_a9_2.pdf',
+        'https://vik.bme.hu/document/6104/original/5n_a9_4.pdf',
+        'https://vik.bme.hu/document/6118/original/szv_bsc.pdf'
+]
 
 # The work around to avoid using BeautifulSoup4 is to insert this
 # jQuery statement into the JavaScript console of your browser
@@ -99,6 +89,9 @@ def print_days(days, f):
                     '/'.join(event), file=f)
 
 def make_report(report_filename):
+    if not os.path.exists('pdfs'):
+        os.mkdir('pdfs')
+
     with open(report_filename, 'w', encoding='utf-8') as f:
         for path in paths:
             filename = os.path.basename(path)
@@ -135,7 +128,6 @@ def make_report(report_filename):
 
                 print(filename, file=f)
                 print_days(days, f)
-            break
 
 
 if __name__ == '__main__':
